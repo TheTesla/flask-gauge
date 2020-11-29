@@ -7,10 +7,13 @@ var size = 3;
 
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
-        var i = xhttp.responseText;
-	console.log(i);
+        var r = xhttp.responseText;
+	x = JSON.parse(r);
+	console.log(x.power);
+	console.log(x.maxpower);
 	console.log(xhttp.readyState);
 	console.log(xhttp.status);
+	i = x.power / x.maxpower
 	if(xhttp.readyState === XMLHttpRequest.DONE) {}
 	else{
 		return;
@@ -67,7 +70,8 @@ xhttp.onreadystatechange = function() {
 	ctx.font = `${size*10}px Arial`;
 	ctx.fillText("Power (W)", size*100 + size*20*Math.cos(-Math.PI*0.50), size*100 + size*20*Math.sin(-Math.PI*0.50));
 	ctx.fillText("0", size*100 + size*70*Math.cos(-Math.PI*1.25), size*100 + size*70*Math.sin(-Math.PI*1.25));
-	ctx.fillText("50", size*100 + size*70*Math.cos(Math.PI*0.25), size*100 + size*70*Math.sin(Math.PI*0.25));
+	ctx.fillText(x.maxpower, size*100 + size*70*Math.cos(Math.PI*-0.25), size*100 + size*70*Math.sin(Math.PI*-0.25));
+	//ctx.fillText("50", size*100 + size*70*Math.cos(Math.PI*0.25), size*100 + size*70*Math.sin(Math.PI*0.25));
 
 };
 setInterval(function () {
@@ -115,10 +119,11 @@ setInterval(function () {
 		ctx.font = `${size*10}px Arial`;
 		ctx.fillText("Power (W)", size*100 + size*20*Math.cos(-Math.PI*0.50), size*100 + size*20*Math.sin(-Math.PI*0.50));
 		ctx.fillText("0", size*100 + size*70*Math.cos(-Math.PI*1.25), size*100 + size*70*Math.sin(-Math.PI*1.25));
-		ctx.fillText("50", size*100 + size*70*Math.cos(Math.PI*0.25), size*100 + size*70*Math.sin(Math.PI*0.25));
+		//ctx.fillText("50", size*100 + size*70*Math.cos(Math.PI*0.25), size*100 + size*70*Math.sin(Math.PI*0.25));
+		//ctx.fillText(x.maxpower, size*100 + size*70*Math.cos(Math.PI*-0.25), size*100 + size*70*Math.sin(Math.PI*-0.25));
 	};
         xhttp.open('GET', 'val1', true);
         xhttp.send();
-}, 500);
+}, 100);
 
 
